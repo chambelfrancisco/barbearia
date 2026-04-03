@@ -1,0 +1,175 @@
+/* =========================================================
+   BarberKing – style.css
+   Dark Mode Premium Barbershop Landing Page
+   ========================================================= */
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #0D0D0D;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #141414; }
+::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 99px; }
+
+/* ── Tailwind Custom Shadows ── */
+.hover\:shadow-gold:hover {
+  box-shadow: 0 0 30px rgba(201,168,76,0.25), 0 8px 32px rgba(0,0,0,0.4);
+}
+.hover\:shadow-gold-sm:hover {
+  box-shadow: 0 0 16px rgba(201,168,76,0.15), 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* ── Navbar scroll effect ── */
+#navbar.scrolled {
+  background-color: rgba(13,13,13,0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+}
+
+/* ── Nav links underline effect ── */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #C9A84C;
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after { width: 100%; }
+
+/* ── Animations ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease both;
+}
+.animation-delay-100 { animation-delay: 0.1s; }
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-300 { animation-delay: 0.3s; }
+.animation-delay-400 { animation-delay: 0.4s; }
+
+/* ── Reveal on scroll ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Hero gradient overlay ── */
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 60%);
+}
+
+/* ── Feature Cards ── */
+.feature-card {
+  cursor: default;
+}
+.feature-icon {
+  transition: transform 0.3s ease;
+}
+.feature-card:hover .feature-icon {
+  transform: scale(1.1) rotate(-3deg);
+}
+
+/* ── Service Cards ── */
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.service-card:hover::before { opacity: 1; }
+
+/* ── Masonry Gallery ── */
+.masonry-grid .gallery-item {
+  display: block;
+  cursor: zoom-in;
+}
+.masonry-grid .gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── Carousel ── */
+#carousel-track {
+  display: flex;
+}
+
+.review-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(201,168,76,0.12);
+}
+
+/* ── Dots ── */
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 99px;
+  background: #2E2E2E;
+  border: 1px solid #444;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.dot.active {
+  background: #C9A84C;
+  border-color: #C9A84C;
+  width: 24px;
+}
+
+/* ── WhatsApp float pulse ── */
+#whatsapp-float {
+  animation: pulse-wa 2.5s ease infinite;
+}
+@keyframes pulse-wa {
+  0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.4); }
+  50%      { box-shadow: 0 0 0 12px rgba(37,211,102,0); }
+}
+
+/* ── Buttons ── */
+.btn-primary:active, .btn-secondary:active { transform: scale(0.97); }
+
+/* ── Map dark filter ── */
+iframe { display: block; }
+
+/* ── Responsive tweaks ── */
+@media (max-width: 768px) {
+  .review-card { min-width: calc(100vw - 3rem); }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .review-card { min-width: calc(50vw - 2rem); }
+}
+@media (min-width: 1024px) {
+  .review-card { min-width: calc(33.333% - 1rem); }
+}
